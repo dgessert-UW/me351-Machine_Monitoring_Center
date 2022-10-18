@@ -95,8 +95,10 @@ def MQTT_publish(myMQTTClient,topic,payload):
                             QoS=0,
                             payload= payload)
 
-            
-def testing(sample_rate=5):
+          
+        
+        
+def testing(sample_rate=60):
     MQTT_Failures = 0
     Offline_Data_Collection = {}
     existing_devices = {'Temp Sensor 1':{'Address':100,'SlaveID':1,'Count':2,'Type':'Temperature'},
@@ -127,12 +129,22 @@ def testing(sample_rate=5):
                 
         print(payload)
         try:
-            MQTT_publish(MQTT_client,
-                         'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
-                         payload )
+            if MQTT_Failures == 0:
+                MQTT_publish(MQTT_client,
+                             'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
+                             payload )
+            else:
+                for device_name in Offline_Data_collection:
+                    print('138')
+                    MQTT_publish(MQTT_client,
+                             'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
+                             Offline_Data_collection[device_name])
+                    print('142')
+                MQTT_Failures = 0
+                Offline_Data_collection = {}
         except:
             Offline_Data_collection[device_name]+=payload
-            if MQTT_Failures % len(existing_devices) = 0:
+            
 #'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']) 
 
 
