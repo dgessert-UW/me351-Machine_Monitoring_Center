@@ -127,23 +127,23 @@ def testing(sample_rate=60):
                 except:        
                     payload =str({'Temperature':'Device Unresponsive','Unit':'-','Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S")})
                 
-        print(payload)
-        try:
-            if MQTT_Failures == 0:
-                MQTT_publish(MQTT_client,
-                             'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
-                             payload )
-            else:
-                for device_name in Offline_Data_collection:
-                    print('138')
-                    MQTT_publish(MQTT_client,
-                             'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
-                             Offline_Data_collection[device_name])
-                    print('142')
-                MQTT_Failures = 0
-                Offline_Data_collection = {}
-        except:
-            Offline_Data_collection[device_name]+=payload
+                print(payload)
+                try:
+                    if MQTT_Failures == 0:
+                        MQTT_publish(MQTT_client,
+                                     'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
+                                     payload )
+                    else:
+                        for device_name in Offline_Data_collection:
+                            print('138')
+                            MQTT_publish(MQTT_client,
+                                     'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
+                                     Offline_Data_collection[device_name])
+                            print('142')
+                        MQTT_Failures = 0
+                        Offline_Data_collection = {}
+                except:
+                    Offline_Data_collection[device_name]+=payload
             
 #'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']) 
 
