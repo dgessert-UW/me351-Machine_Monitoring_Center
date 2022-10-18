@@ -6,6 +6,7 @@ import datetime
 import time
 from datetime import datetime
 
+
 def email_module(temp, temp_unit):
     try:
         with smtplib.SMTP("smtp.gmail.com",587) as smtp:
@@ -96,8 +97,11 @@ def MQTT_publish(myMQTTClient,topic,payload):
 
             
 def testing(sample_rate=5):
+    MQTT_Failures = 0
+    Offline_Data_Collection = {}
     existing_devices = {'Temp Sensor 1':{'Address':100,'SlaveID':1,'Count':2,'Type':'Temperature'},
-                        'Temp Sensor 2':{'Address':100,'SlaveID':2,'Count':2,'Type':'Temperature'}}
+                        'Temp Sensor 2':{'Address':100,'SlaveID':2,'Count':2,'Type':'Temperature'},
+                        'Temp Sensor 3':{'Address':100,'SlaveID':3,'Count':2,'Type':'Temperature'}}
     pause_time = sample_rate / len(existing_devices)
     MQTT_client = MQTT_connect()
 
@@ -122,9 +126,13 @@ def testing(sample_rate=5):
                     payload =str({'Temperature':'Device Unresponsive','Unit':'-','Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S")})
                 
         print(payload)
-        MQTT_publish(MQTT_client,
-                     'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
-                     payload )
+        try:
+            MQTT_publish(MQTT_client,
+                         'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
+                         payload )
+        except:
+            Offline_Data_collection[device_name]+=payload
+            if MQTT_Failures % len(existing_devices) = 0:
 #'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']) 
 
 
