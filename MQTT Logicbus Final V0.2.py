@@ -11,7 +11,9 @@ Offline_Data_Collection = {}
 existing_devices = {'Temp Sensor 1':{'Address':100,'SlaveID':1,'Count':2,'Type':'Temperature'},
                     'Temp Sensor 2':{'Address':100,'SlaveID':2,'Count':2,'Type':'Temperature'},
                     'Temp Sensor 3':{'Address':100,'SlaveID':3,'Count':2,'Type':'Temperature'}}
+
 pause_time = sample_rate / len(existing_devices)
+
 
 MQTT_client = MMC_MQTT.MQTT_connect()
 
@@ -51,7 +53,7 @@ while True:
                     MQTT_Failures = 0
                     Offline_Data_Collection = {}
             except:
-                Offline_Data_Collection[device_name]+=payload
+                Offline_Data_Collection[device_name]+=[payload]
         
 
 
