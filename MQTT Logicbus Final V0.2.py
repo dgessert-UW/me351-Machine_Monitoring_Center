@@ -9,7 +9,6 @@ import Device_Data
 sample_rate=60
 MQTT_Failures = 0
 Offline_Data_Collection = {}
-<<<<<<< HEAD
 
 
 
@@ -20,12 +19,9 @@ print(existing_devices)
 #{'Temp Sensor 1':{'Address':100,'SlaveID':1,'Count':2,'Type':'Temperature'},
 #                    'Temp Sensor 2':{'Address':100,'SlaveID':2,'Count':2,'Type':'Temperature'},
 #                    'Temp Sensor 3':{'Address':100,'SlaveID':3,'Count':2,'Type':'Temperature'}}
-=======
-existing_devices = {'Temp Sensor 1':{'Address':100,'SlaveID':1,'Count':2,'Type':'Temperature'},
-                    'Temp Sensor 2':{'Address':100,'SlaveID':2,'Count':2,'Type':'Temperature'},
-                    'Temp Sensor 3':{'Address':100,'SlaveID':3,'Count':2,'Type':'Temperature'}}
 
->>>>>>> parent of 18f0d39 (Revert "MQTT Logicbus Final V0.2")
+
+
 pause_time = sample_rate / len(existing_devices)
 
 
