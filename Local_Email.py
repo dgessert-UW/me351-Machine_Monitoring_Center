@@ -40,4 +40,3 @@ def email_module(temp, temp_unit):
                 #'minlab@office365.wisc.edu'   #minlab mailing list
         except:
             print('emailing error')
-            pass
