@@ -51,7 +51,7 @@ while True:
                     MQTT_Failures = 0
                     Offline_Data_Collection = {}
             except:
-                Offline_Data_Collection[device_name]+=payload
+                Offline_Data_Collection[device_name]+=[payload]
         
 
 
