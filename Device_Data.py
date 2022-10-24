@@ -27,7 +27,7 @@ def device_input_check(existing_devices):
     else:
         return existing_devices
 
-def data_load(path = str(os.getcwd())+'\Device_List.json'):
+def data_load(path = str(os.getcwd())+'/Device_List.json'):
     
     json_file_path = path
     with open(json_file_path, 'r') as j: 
