@@ -45,9 +45,9 @@ while True:
                                                                 existing_devices[device_name]['Count'],
                                                                 existing_devices[device_name]['SlaveID'])
                 
-                payload =str({'Temperature':str(modbus_return),'Unit':'C','Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S")})
+                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':str(modbus_return),'Unit':'C'})
             except:        
-                payload =str({'Temperature':'Device Unresponsive','Unit':'-','Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S")})
+                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Device Unresponsive','Unit':'-'})
             
 
             try:
