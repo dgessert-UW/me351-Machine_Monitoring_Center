@@ -32,13 +32,14 @@ modbus_connection = MMC_Modbus.modbus_connect()
 
 
 while True:
-    time.sleep(pause_time)
+    
     if modbus_connection == False:
         modbus_connection = MMC_Modbus.modbus_connect()
         payload =str({'Temperature':'Unable to Establish Modbus Connection','Unit':'-','Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S")})
     
     else:           
         for device_name in existing_devices:
+            time.sleep(pause_time)
             try:
                 modbus_return = MMC_Modbus.modbus_read_holding_registers(modbus_connection ,existing_devices[device_name]['Address'],
                                                                 existing_devices[device_name]['Count'],
