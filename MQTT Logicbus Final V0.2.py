@@ -1,4 +1,4 @@
-#import MMC_Modbus
+import MMC_Modbus
 import MMC_MQTT
 from datetime import datetime
 import time
@@ -50,21 +50,30 @@ while True:
             
 
             try:
-                if MQTT_Failures == 0:
+                if len(Offline_Data_Collection) == 0:
                     MMC_MQTT.MQTT_publish(MQTT_client,
                                     'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
                                     payload )
                 else:
-                    for device_name in Offline_Data_Collection:
-                        MMC_MQTT.MQTT_publish(MQTT_client,
-                                    'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
-                                    Offline_Data_Collection[device_name])
-
-                    MQTT_Failures = 0
+                    if MQTT_client == False:
+                        MQTT_client = MMC_MQTT.MQTT_connect()
+                    for offline_device_name in Offline_Data_Collection:
+                        for offline_payload  in Offline_Data_Collection[offline_device_name]:
+                            
+                            MMC_MQTT.MQTT_publish(MQTT_client,
+                                        'home/'+str(existing_devices[offline_device_name]['Type'])+'/'+str(existing_devices[offline_device_name]['SlaveID']),
+                                        offline_payload)
+                            time.sleep(0.1)
+                        
+                    MMC_MQTT.MQTT_publish(MQTT_client,
+                                'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
+                                payload)                       
                     Offline_Data_Collection = {}
             except:
-                Offline_Data_Collection[device_name]+=[payload]
-        
+                if device_name not in Offline_Data_Collection:
+                    Offline_Data_Collection[device_name]=[payload]
+                else:
+                    Offline_Data_Collection[device_name].append(payload)
 
 
 
