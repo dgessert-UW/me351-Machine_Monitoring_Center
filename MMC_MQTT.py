@@ -1,8 +1,8 @@
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 
-def MQTT_connect():
+def MQTT_connect(client_id = "MMCID"):
     try:
-        myMQTTClient = AWSIoTMQTTClient("MMCID")
+        myMQTTClient = AWSIoTMQTTClient(client_id)
         myMQTTClient.configureEndpoint("a3r5ud4y7va9gp-ats.iot.us-east-1.amazonaws.com", 8883)
         
         #Directory of the AWS assigned credential files
