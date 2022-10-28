@@ -23,4 +23,7 @@ We import just one module.
 
       from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
       
-This is a package supported by amazon which has all the tools to complete communication.
+This is a package supported by amazon which has all the tools to complete communication. There are two major functions within this file:
+       MQTT_connect()
+       MQTT_publish()
+MQTT_connect() function 
