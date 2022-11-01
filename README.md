@@ -11,7 +11,7 @@ To download the git hub code for the first time use the git clone command in the
 <img width="373" alt="image" src="https://user-images.githubusercontent.com/99203836/199291117-dee23a14-e89f-4e3c-8d8d-8605040ed3f3.png">
 
 Updating:
-When you make changes to the code on the github side you can update the code on the PI using the "git pull" command in the PI terminal.
+When you make changes to the code on the github side you can update the code on the PI using the "git pull" command in the PI terminal:
 <img width="501" alt="image" src="https://user-images.githubusercontent.com/99203836/199290360-6ad1c96f-61c6-4fdb-92bd-58e1f1b33865.png">
 
 When you make changes to the code on the PI side you can update the code on the github side using the "git push" command in the PI terminal.
