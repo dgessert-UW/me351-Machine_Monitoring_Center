@@ -5,6 +5,10 @@ LogicBus Temperature Sensor: https://www.logicbus.com/TST300v2_p_30453.html
 
 Waveshare USB Converter: https://www.waveshare.com/usb-to-rs485.htm
 
+Downloading and updating the repository on the PI
+
+<img width="501" alt="image" src="https://user-images.githubusercontent.com/99203836/199290360-6ad1c96f-61c6-4fdb-92bd-58e1f1b33865.png">
+
 # MMC_Modbus.py
 This file handles all the communication between the pi and the sensors
 
