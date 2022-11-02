@@ -13,11 +13,11 @@ def modbus_connect(parity = 'E',bytesize =8,baudrate =19200,stopbits = 1,port='/
 
 def modbus_read_holding_registers(client,address, count, slave_id):
     read=client.read_holding_registers(address = address,count =count, unit = slave_id)#address = 100 ,count =2,unit=sensor) 
-    print(read)
+
     data = read.registers
-    print(data)
-    print(type( data[0]))
+    
     a = data[0]
     b = data[1]
-    temperature = str(struct.unpack('>f', bytes.fromhex(f"{a:0>4x}" + f"{b:0>4x}"))[0])
-    return temperature
+    reading = str(struct.unpack('>f', bytes.fromhex(f"{a:0>4x}" + f"{b:0>4x}"))[0])
+    reading = str(round(float(reading),3))
+    return reading
