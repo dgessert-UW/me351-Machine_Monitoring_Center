@@ -8,7 +8,7 @@ import Device_Data
      
 sample_rate=60
 MQTT_Failures = 0
-Offline_Data_Collection = {}
+Offline_Data_Collection = []
 
 
 
@@ -29,7 +29,7 @@ while True:
     
     if modbus_connection == False:
         modbus_connection = MMC_Modbus.modbus_connect()
-        payload =str({'Temperature':'Unable to Establish Modbus Connection','Unit':'-','Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S")})
+        payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Unable to Establish Modbus Connection','Sensor_ID_Code':'NA'})
     
     else:           
         for device_name in existing_devices:
@@ -39,36 +39,31 @@ while True:
                                                                 existing_devices[device_name]['Count'],
                                                                 existing_devices[device_name]['SlaveID'])
                 
-                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':str(modbus_return)+' C'})
+                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':str(modbus_return)+' C','Sensor_ID_Code':str(existing_devices[device_name]['Type'])+' '+str(existing_devices[device_name]['SlaveID'])})
             except:        
-                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Device Unresponsive'})
+                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Device Unresponsive','Sensor_ID_Code':str(existing_devices[device_name]['Type'])+' '+str(existing_devices[device_name]['SlaveID'])})
             
 
             try:
                 if len(Offline_Data_Collection) == 0:
                     MMC_MQTT.MQTT_publish(MQTT_client,
-                                    'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
+                                    'home/sensor_data',
                                     payload )
                 else:
                     if MQTT_client == False:
                         MQTT_client = MMC_MQTT.MQTT_connect()
-                    for offline_device_name in Offline_Data_Collection:
-                        for offline_payload  in Offline_Data_Collection[offline_device_name]:
-                            
-                            MMC_MQTT.MQTT_publish(MQTT_client,
-                                        'home/'+str(existing_devices[offline_device_name]['Type'])+'/'+str(existing_devices[offline_device_name]['SlaveID']),
-                                        offline_payload)
-                            time.sleep(0.1)
-                        
+                    for offline_payload in Offline_Data_Collection:
+                        MMC_MQTT.MQTT_publish(MQTT_client,
+                                    'home/sensor_data',
+                                    offline_payload)
+                        time.sleep(0.1)
+                    Offline_Data_Collection = []   
                     MMC_MQTT.MQTT_publish(MQTT_client,
-                                'home/'+existing_devices[device_name]['Type']+'/'+str(existing_devices[device_name]['SlaveID']),
+                                'home/sensor_data',s
                                 payload)                       
-                    Offline_Data_Collection = {}
+                    
             except:
-                if device_name not in Offline_Data_Collection:
-                    Offline_Data_Collection[device_name]=[payload]
-                else:
-                    Offline_Data_Collection[device_name].append(payload)
+                Offline_Data_Collection.append(payload)
 
 
 
