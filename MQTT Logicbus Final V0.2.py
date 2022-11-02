@@ -59,7 +59,7 @@ while True:
                         time.sleep(0.1)
                     Offline_Data_Collection = []   
                     MMC_MQTT.MQTT_publish(MQTT_client,
-                                'home/sensor_data',s
+                                'home/sensor_data',
                                 payload)                       
                     
             except:
