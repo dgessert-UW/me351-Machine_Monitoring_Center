@@ -16,12 +16,6 @@ existing_devices =Device_Data.data_load()
 print(existing_devices)
 
 
-#{'Temp Sensor 1':{'Address':100,'SlaveID':1,'Count':2,'Type':'Temperature'},
-#                    'Temp Sensor 2':{'Address':100,'SlaveID':2,'Count':2,'Type':'Temperature'},
-#                    'Temp Sensor 3':{'Address':100,'SlaveID':3,'Count':2,'Type':'Temperature'}}
-
-
-
 pause_time = sample_rate / len(existing_devices)
 
 
