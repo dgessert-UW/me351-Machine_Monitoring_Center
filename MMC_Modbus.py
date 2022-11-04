@@ -22,7 +22,7 @@ def modbus_read_holding_registers(client,address, count, slave_id):
     reading = str(round(float(reading),3))
     return reading
 
-def modbus_read_holding_registers(client,address, count, slave_id):
+def modbus_write_holding_registers(client,address, count, slave_id):
     read=client.write_register(address = address,count =count, unit = slave_id) 
 
     data = read.registers
