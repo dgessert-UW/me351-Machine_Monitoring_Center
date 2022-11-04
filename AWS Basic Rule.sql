@@ -1,0 +1,1 @@
+SELECT Output FROM 'home/sensor_data' WHERE Sensor_ID_Code LIKE 'Temperature%' AND Output > 23.5
