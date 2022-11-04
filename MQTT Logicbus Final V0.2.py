@@ -29,7 +29,7 @@ while True:
     
     if modbus_connection == False:
         modbus_connection = MMC_Modbus.modbus_connect()
-        payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Unable to Establish Modbus Connection','Sensor_ID_Code':'NA'})
+        payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Unable to Establish Modbus Connection','Unit':'-','Sensor_ID_Code':'NA'})
     
     else:           
         for device_name in existing_devices:
@@ -39,9 +39,9 @@ while True:
                                                                 existing_devices[device_name]['Count'],
                                                                 existing_devices[device_name]['SlaveID'])
                 
-                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':str(modbus_return), 'Unit':'C','Sensor_ID_Code':str(existing_devices[device_name]['Type'])+' '+str(existing_devices[device_name]['SlaveID'])})
+                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':str(modbus_return),'Unit':'C','Sensor_ID_Code':str(existing_devices[device_name]['Type'])+' '+str(existing_devices[device_name]['SlaveID'])})
             except:        
-                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Device Unresponsive','Sensor_ID_Code':str(existing_devices[device_name]['Type'])+' '+str(existing_devices[device_name]['SlaveID'])})
+                payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Device Unresponsive','Unit':'-','Sensor_ID_Code':str(existing_devices[device_name]['Type'])+' '+str(existing_devices[device_name]['SlaveID'])})
             
 
             try:
