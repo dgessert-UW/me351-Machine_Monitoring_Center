@@ -15,9 +15,11 @@ def modbus_connect(parity = 'E',bytesize =8,baudrate =19200,stopbits = 1,port='/
                         bytesize =bytesize, parity = parity, baudrate =baudrate)
                 connection_established = client.connect()
                 if connection_established == True:
-                    return client
                     break
-
+            if connection_established == True:
+                return client
+            else:
+                return False
     except:
         print('F')
         return False
