@@ -29,7 +29,8 @@ while True:
     
     if modbus_connection == False:
         modbus_connection = MMC_Modbus.modbus_connect()
-        payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Unable to Establish Modbus Connection','Unit':'-','Sensor_ID_Code':'NA'})
+        if modbus_connection == False:
+            payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Unable to Connect to Converter','Unit':'-','Sensor_ID_Code':'NA'})
     
     else:           
         for device_name in existing_devices:
@@ -44,7 +45,7 @@ while True:
     
                 modbus_connection = MMC_Modbus.modbus_connect()
                 if modbus_connection == False:
-                    payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Unable Connect to Converter','Unit':'-','Sensor_ID_Code':str(existing_devices[device_name]['Type'])+' '+str(existing_devices[device_name]['SlaveID'])})
+                    payload =str({'Time':datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),'Output':'Unable to Connect to Converter','Unit':'-','Sensor_ID_Code':str(existing_devices[device_name]['Type'])+' '+str(existing_devices[device_name]['SlaveID'])})
                 else:
                     try:
                         modbus_return = MMC_Modbus.modbus_read_holding_registers(modbus_connection ,existing_devices[device_name]['Address'],
