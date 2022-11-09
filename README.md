@@ -1,4 +1,4 @@
-# me351-Machine_Monitoring_Center
+# me352-Machine_Monitoring_Center
 The files in this repository are meant to communicate with LogicBus sensors using a raspberrypi through a waveshare usb converter.
 
 LogicBus Temperature Sensor: https://www.logicbus.com/TST300v2_p_30453.html
