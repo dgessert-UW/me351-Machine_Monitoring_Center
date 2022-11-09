@@ -26,6 +26,7 @@ We import just two outside modules for to complete the communication.
       import struct
 
 ModbusSerialClient - has all the capabilities that me need to establish the modbus connection and then read the sensors
+
 struct - we need this module to convert the sensor response from hex to a readable temperature value
 
 # MMC_MQTT.py
@@ -35,6 +36,10 @@ We import just one module.
 
       from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
       
+Here's the documentation for the function:
+
+https://s3.amazonaws.com/aws-iot-device-sdk-python-docs/sphinx/html/index.html
+
 This is a package supported by amazon which has all the tools to complete communication. There are two major functions within this file:
       MQTT_connect()
       MQTT_publish()
