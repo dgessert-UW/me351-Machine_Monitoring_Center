@@ -25,6 +25,10 @@ We import just two outside modules for to complete the communication.
       from pymodbus.client.sync import ModbusSerialClient as ModbusClient
       import struct
 
+Here's the documentation for the pymodbus client
+
+https://pymodbus.readthedocs.io/en/latest/source/library/pymodbus.client.htmls
+
 ModbusSerialClient - has all the capabilities that me need to establish the modbus connection and then read the sensors
 
 struct - we need this module to convert the sensor response from hex to a readable temperature value
