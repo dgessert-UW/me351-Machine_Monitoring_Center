@@ -1,4 +1,4 @@
-# me351-Machine_Monitoring_Center
+# me352-Machine_Monitoring_Center
 The files in this repository are meant to communicate with LogicBus sensors using a raspberrypi through a waveshare usb converter.
 
 LogicBus Temperature Sensor: https://www.logicbus.com/TST300v2_p_30453.html
@@ -25,7 +25,12 @@ We import just two outside modules for to complete the communication.
       from pymodbus.client.sync import ModbusSerialClient as ModbusClient
       import struct
 
+Here's the documentation for the pymodbus client
+
+https://pymodbus.readthedocs.io/en/latest/source/library/pymodbus.client.htmls
+
 ModbusSerialClient - has all the capabilities that me need to establish the modbus connection and then read the sensors
+
 struct - we need this module to convert the sensor response from hex to a readable temperature value
 
 # MMC_MQTT.py
@@ -35,6 +40,10 @@ We import just one module.
 
       from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
       
+Here's the documentation for the function:
+
+https://s3.amazonaws.com/aws-iot-device-sdk-python-docs/sphinx/html/index.html
+
 This is a package supported by amazon which has all the tools to complete communication. There are two major functions within this file:
       MQTT_connect()
       MQTT_publish()

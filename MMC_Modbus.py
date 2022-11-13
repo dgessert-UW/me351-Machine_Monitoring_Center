@@ -1,12 +1,25 @@
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 import struct
 def modbus_connect(parity = 'E',bytesize =8,baudrate =19200,stopbits = 1,port='/dev/ttyUSB0',method= 'rtu'):
+    possible_usb_ports = ['/dev/ttyUSB0','/dev/ttyUSB1','/dev/ttyUSB2','/dev/ttyUSB3']
     try:
         client = ModbusClient(method= method,port=port,stopbits = stopbits,
                               bytesize =bytesize, parity = parity, baudrate =baudrate)
 
-        client.connect()
-        return client
+        connection_established = client.connect()
+        if connection_established == True:
+            return client
+        else:
+            for port in possible_usb_ports:
+                client = ModbusClient(method= method,port=port,stopbits = stopbits,
+                        bytesize =bytesize, parity = parity, baudrate =baudrate)
+                connection_established = client.connect()
+                if connection_established == True:
+                    break
+            if connection_established == True:
+                return client
+            else:
+                return False
     except:
         print('F')
         return False
