@@ -37,11 +37,11 @@ We've got two main functions in this code for reading the senors the first estal
 
       modbus_connect(parity = 'E',bytesize =8,baudrate =19200,stopbits = 1,port='/dev/ttyUSB0',method= 'rtu')
 
-parity,bytesize,baudrate,stopbits - these are a defined by the requirements of the senors, the default values in the function will work with the logic bus sensor.
+**parity,bytesize,baudrate,stopbits -** these are a defined by the requirements of the senors, the default values in the function will work with the logic bus sensor.
 
-port- this value is determined by the port the converter is hooked up to, if it is the only serial converter connected on boot the port will be the default value listed
+**port-** this value is determined by the port the converter is hooked up to, if it is the only serial converter connected on boot the port will be the default value listed
 
-method- our setup utilizes serial protocols so it should always be the default
+**method-** our setup utilizes serial protocols so it should always be the default
 
 Function outputs: The modbus_connect function will either return a successfull connection or it will try multiple different usb ports and if it still can't connect it will return the boolean value of False, and it's set up that way so that the code will not crash if the USB converter is unpluged and then pluged back in.
 
@@ -52,13 +52,13 @@ The other major function is:
 "read holding registers" is a standard modbus function and for the logicbus senors it's what we use to communicate with the senors. 
 
 In this function:
-client -  this is the connection that is a established by "modbus_connect()" you should our main script is written in such a way that that "modbus_read_holding_registers()" isn't ran unless the modbus connection is successfully established if you recieve a False boolean value from "modbus_connect()" and put it into "modbus_read_holding_registers()" the code will crash.
+**client -**  this is the connection that is a established by "modbus_connect()" you should our main script is written in such a way that that "modbus_read_holding_registers()" isn't ran unless the modbus connection is successfully established if you recieve a False boolean value from "modbus_connect()" and put it into "modbus_read_holding_registers()" the code will crash.
 
-address - this is a property of the message you want to recieve from the sensor
+**address -** this is a property of the message you want to recieve from the sensor
 
-count - this is a property of the address for the logicbus temp sensors count should be equal to 2
+**count -** this is a property of the address for the logicbus temp sensors count should be equal to 2
 
-slave_id -  this is a property of the modbus setup no two sensors can have the same slave_id
+**slave_id -**  this is a property of the modbus setup no two sensors can have the same slave_id
 
 # MMC_MQTT.py
 This file handle the initial connection of the raspberrypi to the AWS server and then handles the publishing of the data to the server
