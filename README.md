@@ -74,3 +74,21 @@ This is a package supported by amazon which has all the tools to complete commun
       MQTT_connect()
       MQTT_publish()
 MQTT_connect() function 
+
+# Device_List.json
+
+This is a JSON file which stores all of the data for the sensors in the system. It's the cleanest way to keep track of the sensors in the system and add/subtract sensors from the system. An example of the JSON file format is shown below.
+
+![image](https://user-images.githubusercontent.com/99203836/205469225-34f399d4-6931-4ac5-99f5-b075be011f46.png)
+
+In a JSON file you have a key, which for our files are just a name to identify the sensor, this key should be unique from other keys, but aslong as it the key is a string the, name you chose to identify the sensor doesn't effect the code. Each key (sensor name) has a corresponding value in our case the the value is another JSON structure. This embeded JSON structure holds all the sensor communication attributes, so the address, slaveid, count, and the type of sensor (temperature or humidity). Your input for type of sensor will be paired with the slaveid and sent to AWS in the payload in order to help identify the sensor.
+
+# Device_Data.py
+
+This file is called in the main script to load the data from Data_List.json and do a basic check on the json data to check that the format of the JSON (input types) are correct. The only function from this script that is called in the main file is:
+      
+      data_load(path = str(os.getcwd())+'/Device_List.json')
+
+If you clone this repository as shown in the beginning of document the code will run with the default value presented in the function. If you do not clone, place the JSON path into the function. If you do not use a JSON file or change the structure of the JSON file shown above you don't need to call this function.
+
+# MQTT Logicbus Final V0.2.py
