@@ -43,9 +43,7 @@ port- this value is determined by the port the converter is hooked up to, if it 
 
 method- our setup utilizes serial protocols so it should always be the default
 
-### outputs
-
-The modbus_connect function will either return a successfull connection or it will try multiple different usb ports and if it still can't connect it will return the boolean value of False, and it's set up that way so that the code will not crash if the USB converter is unpluged and then pluged back in.
+Function outputs: The modbus_connect function will either return a successfull connection or it will try multiple different usb ports and if it still can't connect it will return the boolean value of False, and it's set up that way so that the code will not crash if the USB converter is unpluged and then pluged back in.
 
 The other major function is:
 
