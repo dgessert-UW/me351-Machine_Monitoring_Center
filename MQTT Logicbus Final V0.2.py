@@ -4,7 +4,9 @@ from datetime import datetime
 import time
 import Device_Data   
      
-sample_rate=60
+sample_rate=60 # The amount of time between a specific sensor being sampled (value in second)
+               # If you set sample_rate = 60 the first sensor will be sampled, it will loop through the other sensors
+               # and the next response from the first sensor will be 60 seconds later.
 
 existing_devices =Device_Data.data_load()
 print(existing_devices)
