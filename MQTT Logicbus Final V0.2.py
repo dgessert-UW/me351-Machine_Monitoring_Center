@@ -2,28 +2,21 @@ import MMC_Modbus
 import MMC_MQTT
 from datetime import datetime
 import time
-import Device_Data
-
-        
+import Device_Data   
      
 sample_rate=60
-MQTT_Failures = 0
-Offline_Data_Collection = []
-
-
 
 existing_devices =Device_Data.data_load()
 print(existing_devices)
+pause_time = sample_rate / len(existing_devices) 
 
-
-pause_time = sample_rate / len(existing_devices)
-
+Offline_Data_Collection = []
 
 MQTT_client = MMC_MQTT.MQTT_connect()
 
-
 modbus_connection = MMC_Modbus.modbus_connect()
 
+MQTT_Failures = 0
 
 while True:
     
