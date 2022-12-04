@@ -51,7 +51,7 @@ The other major function is:
       
 "read holding registers" is a standard modbus function and for the logicbus senors it's what we use to communicate with the senors. 
 
-**client -**  this is the connection that is a established by "modbus_connect()" you should our main script is written in such a way that that "modbus_read_holding_registers()" isn't ran unless the modbus connection is successfully established if you recieve a False boolean value from "modbus_connect()" and put it into "modbus_read_holding_registers()" the code will crash.
+**client -**  this is the connection that is a established by "modbus_connect()" our main script is written in such a way that that "modbus_read_holding_registers()" isn't ran unless the modbus connection is successfully established if you recieve a False boolean value from "modbus_connect()" and put it into "modbus_read_holding_registers()" the code will crash.
 
 **address -** this is a property of the message you want to recieve from the sensor
 
