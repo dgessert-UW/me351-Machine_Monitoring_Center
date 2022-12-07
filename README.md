@@ -5,6 +5,21 @@ LogicBus Temperature Sensor: https://www.logicbus.com/TST300v2_p_30453.html
 
 Waveshare USB Converter: https://www.waveshare.com/usb-to-rs485.htm
 
+# Wiring Diagram
+
+![Wiring](https://user-images.githubusercontent.com/99203836/206080425-6ecd5833-1759-4965-861d-9c5c9777b557.jpg)
+
+# Connecting to the Raspberry PI
+
+If you want to inferface with the Raspberry PI you can physically interface using a monitor and a micro HDMI to HDMI.
+
+Otherwise you can connect with the Raspberry PI using VNC Viewer. In order to do this the PI as to be powered on an connected to the UWNet. Then with your computer connected to UWNet you can enter the following IP: 10.140.211.57 into the search bar. 
+
+<img width="658" alt="MicrosoftTeams-image" src="https://user-images.githubusercontent.com/99203836/206081000-b17739b0-3ba0-4ddc-bc2a-8d40934d6164.png">
+
+Hit enter and you will be prompted to log in for our device: username: pi password: MMC
+
+
 # Downloading and updating the repository on the PI
 Downloading:
 To download the git hub code for the first time use the git clone command in the PI terminal:
