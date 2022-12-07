@@ -7,6 +7,8 @@ Waveshare USB Converter: https://www.waveshare.com/usb-to-rs485.htm
 
 # Wiring Diagram
 
+Below is a diagram for the wiring of the sensors in our setup.
+
 ![Wiring](https://user-images.githubusercontent.com/99203836/206080425-6ecd5833-1759-4965-861d-9c5c9777b557.jpg)
 
 # Connecting to the Raspberry PI
