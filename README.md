@@ -109,3 +109,20 @@ This file is called in the main script to load the data from Data_List.json and 
 If you clone this repository as shown in the beginning of document the code will run with the default value presented in the function. If you do not clone, place the JSON path into the function. If you do not use a JSON file or change the structure of the JSON file shown above you don't need to call this function.
 
 # MQTT Logicbus Final V0.2.py
+_
+This is the main file which the only file a user needs to start when they want to start collect data. This afforementioned files are imported as needed. There are just a couple parameters the user need to be aware of when running this script. 
+
+The only value a user should be changing is "sample_rate".
+
+<img width="599" alt="image" src="https://user-images.githubusercontent.com/99203836/206254024-a7c3e740-1b3b-4ce7-a139-5a8c53f8c26f.png">
+
+sample_rate defines the amount of time we pause between sampling a specific sensor in seconds. 
+
+The code is setup such that it will load in the sensors from the aforementioned JSON file, it will then determine the number of sensors that we are going to be scanning for.
+
+pause_time is then determined by dividing the sample_rate by the number of sensor.
+
+If you set sample_rate = 60 (1 minute) and you have 2 sensors listed in Device_List.json the pause time will be 30 seconds meaning you will sample sensor 1 then pause for 30 seconds, sample sensor 2 then pause for 30 seconds, you will then return to sensor 1 and continue this cycle until the code is manually stopped.
+
+
+
